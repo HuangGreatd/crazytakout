@@ -1,11 +1,12 @@
 package com.pidan.exception;
 
-
 import com.pidan.model.enums.ErrorCode;
 
-/**自定义异常类
+/**
+ * 自定义异常类
+ *
  * @author 黄大头
- * @date 2023年04月22日 19:29
+ * @date 2023年03月25日 21:53
  */
 public class BusinessException extends RuntimeException {
 

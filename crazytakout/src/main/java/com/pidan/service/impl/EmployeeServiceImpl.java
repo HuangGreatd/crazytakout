@@ -2,8 +2,8 @@ package com.pidan.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.pidan.common.Ressult;
 import com.pidan.exception.BusinessException;
+import com.pidan.exception.GlobalException;
 import com.pidan.model.entity.Employee;
 import com.pidan.model.enums.ErrorCode;
 import com.pidan.service.EmployeeService;
@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.DigestUtils;
 
 import javax.servlet.http.HttpServletRequest;
+import java.time.LocalDateTime;
 
 /**
 * @author 73782
@@ -60,6 +61,19 @@ public class EmployeeServiceImpl extends ServiceImpl<EmployeeMapper, Employee>
         //   6、登录成功，将员工id存入Session并返回登录成功结果
         request.getSession().setAttribute("employee", emp.getId());
         return emp;
+    }
+
+
+    @Override
+    public boolean getUpdateById(Employee employee, long empId) {
+
+        employee.setUpdateTime(LocalDateTime.now());
+        employee.setUpdateUser(empId);
+        boolean result = updateById(employee);
+        if (!result){
+            throw new BusinessException(ErrorCode.STATUS_ERROR);
+        }
+        return result;
     }
 }
 

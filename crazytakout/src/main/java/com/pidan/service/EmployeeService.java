@@ -13,4 +13,6 @@ import javax.servlet.http.HttpServletRequest;
 public interface EmployeeService extends IService<Employee> {
 
     Employee login(Employee employee, HttpServletRequest request);
+
+    boolean getUpdateById(Employee employee, long empId);
 }
