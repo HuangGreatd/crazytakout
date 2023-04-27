@@ -66,14 +66,15 @@ public class EmployeeController {
         if (employee == null) {
             return Ressult.error("添加失败");
         }
-        //设置初始密码
+        //使用元数据处理器替换下面重复代码
+//        //设置初始密码
         employee.setPassword(DigestUtils.md5DigestAsHex("123456".getBytes()));
-        employee.setCreateTime(LocalDateTime.now());
-        employee.setUpdateTime(LocalDateTime.now());
-        Long createUserId = (Long) request.getSession().getAttribute("employee");
-        //创建人
-        employee.setCreateUser(createUserId);
-        employee.setUpdateUser(createUserId);
+//        employee.setCreateTime(LocalDateTime.now());
+//        employee.setUpdateTime(LocalDateTime.now());
+//        Long createUserId = (Long) request.getSession().getAttribute("employee");
+//        //创建人
+//        employee.setCreateUser(createUserId);
+//        employee.setUpdateUser(createUserId);
 
         boolean save = employeeService.save(employee);
         if (!save) {

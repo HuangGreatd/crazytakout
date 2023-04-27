@@ -67,8 +67,8 @@ public class EmployeeServiceImpl extends ServiceImpl<EmployeeMapper, Employee>
     @Override
     public boolean getUpdateById(Employee employee, long empId) {
 
-        employee.setUpdateTime(LocalDateTime.now());
-        employee.setUpdateUser(empId);
+//        employee.setUpdateTime(LocalDateTime.now());
+//        employee.setUpdateUser(empId);
         boolean result = updateById(employee);
         if (!result){
             throw new BusinessException(ErrorCode.STATUS_ERROR);

@@ -1,6 +1,7 @@
 package com.pidan.fltier;
 
 import com.alibaba.fastjson.JSON;
+import com.pidan.common.BaseContext;
 import com.pidan.common.Ressult;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.util.AntPathMatcher;
@@ -51,6 +52,8 @@ public class LoginFilter implements Filter {
         }
         //4、判断登录状态，如果已登录，则直接放行
         if (request.getSession().getAttribute("employee") != null){
+            Long employeeId =(Long) request.getSession().getAttribute("employee");
+            BaseContext.setCurrentId(employeeId);
             filterChain.doFilter(request, response);
             return;
         }
